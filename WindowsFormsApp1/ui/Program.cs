@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CYK_Validator
+namespace WindowsFormsApp1
 {
     static class Program
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace CYK_Validator
+namespace WindowsFormsApp1
 {
     partial class Form1
     {
