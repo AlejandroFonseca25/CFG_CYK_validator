@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace CFG_CYK_validator.ui
 {
     public partial class Form1 : Form
     {

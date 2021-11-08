@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp1.model
+namespace CFG_CYK_validator.model
 {
-    class Grammar
+    class TerminalProduction : Production
     {
+
     }
 }

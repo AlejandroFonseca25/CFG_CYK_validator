@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CFG_CYK_validator.ui;
 
-namespace WindowsFormsApp1
+namespace CFG_CYK_validator.model
 {
     static class Program
     {

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{164C3FF4-B2D8-44E5-88D5-E8EA9967237C}</ProjectGuid>
+    <ProjectGuid>{9BA2A8F5-97DE-4B84-87DE-F8C0AF39A0E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp1</RootNamespace>
-    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <RootNamespace>CFG_CYK_validator</RootNamespace>
+    <AssemblyName>CFG_CYK_validator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,14 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\BinaryProduction.cs" />
+    <Compile Include="model\CykValidator.cs" />
     <Compile Include="model\Grammar.cs" />
+    <Compile Include="model\Production.cs" />
+    <Compile Include="model\TerminalProduction.cs" />
+    <Compile Include="model\Variable.cs" />
     <Compile Include="ui\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ui\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ui\Program.cs" />
+    <Compile Include="model\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

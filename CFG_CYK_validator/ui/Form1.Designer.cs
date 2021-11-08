@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace CFG_CYK_validator.ui
 {
     partial class Form1
     {
