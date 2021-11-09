@@ -10,4 +10,5 @@ namespace CFG_CYK_validator.model
     {
 
     }
+   
 }

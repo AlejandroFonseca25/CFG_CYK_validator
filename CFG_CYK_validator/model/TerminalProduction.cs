@@ -8,6 +8,19 @@ namespace CFG_CYK_validator.model
 {
     class TerminalProduction : Production
     {
-
+        public char Terminal { get; }
+        public TerminalProduction(char t)
+        {
+            Terminal = t;
+        }    
+        
+        public bool Contains(char terminal)
+        {
+            if (Terminal == terminal)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

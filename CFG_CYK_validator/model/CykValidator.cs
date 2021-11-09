@@ -9,49 +9,84 @@ namespace CFG_CYK_validator.model
     class CykValidator
     {
         private Grammar grammar;
-        private string chain;
-        private int length;
         private List<Variable>[,] cykGrid;
 
         public CykValidator()
         {
-            grammar = null;
-            chain = null;
-            length = 0;
+
         }
 
-        public void init(List<Tuple<string, List<string>>> variables)
+        public void init(List<Tuple<string, List<string>>> rawVariables)
         {
-            foreach (Tuple<string, List<string>> v in variables)
+            List<Variable> finalVariables = new List<Variable>();
+
+            foreach (Tuple<string, List<string>> v in rawVariables)
             {
-                
+                foreach(string p in v.Item2)
+                {
+                    List<Production> prodsToAdd = new List<Production>();
+
+                    if (p.Length == 2)
+                    {
+                        prodsToAdd.Add(new BinaryProduction(p[0], p[1]));
+                    } else 
+                    {
+                        prodsToAdd.Add(new TerminalProduction(p[0]));
+                    }
+
+                    finalVariables.Add(new Variable(v.Item1, prodsToAdd));
+                    
+                    grammar = new Grammar(finalVariables);
+                }
             }
         }
 
-        public bool CykAlgorithm()
+        public bool ValidateChain(string chain)
         {
-            cykGrid = new List<Variable>[length, length];
-            bool generated = false;
-            CykInitialize();
-            return false;
+            if (chain.Length == 0)
+            {
+                return ValidateEmpty();
+            }
+            else
+            {
+                return CykAlgorithm(chain); 
+            }
         }
 
-        private void CykInitialize()
+        private bool CykAlgorithm(string chain)
         {
-            
-            
+            cykGrid = new List<Variable>[chain.Length, chain.Length];
+            bool generated = false;
+            CykInitialize(chain);
+            return false;
+        }
+        private void CykInitialize(string chain)
+        {
+            for (int i = 0; i < chain.Length; i++)
+            {
+                cykGrid[i, 0] = grammar.GeneratorsOfChar(chain[i]);
+            }
         }
 
         private void CykRepetitive()
         {
 
-            
         }
 
-        public void setChain(string newChain)
+        private bool ValidateEmpty()
         {
-            chain = newChain;
-            length = chain.Length;
+            if (grammar.Variables[0].HasEmpty())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+        
+
+        
     }
 }

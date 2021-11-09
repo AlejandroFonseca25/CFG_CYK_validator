@@ -8,17 +8,26 @@ namespace CFG_CYK_validator.model
 {
     class Variable
     {
-        public string   Name { get; }
+        public string Name { get; }
         public List<Production> Productions { get; }
-        
-        public Variable(List<Production> productions)
+
+        public Variable(string name, List<Production> productions)
         {
             this.Productions = productions;
+            this.Name = name;
         }
 
-        private List<char> GetTerminals()
+        public bool HasEmpty()
         {
-            return null;
+            foreach (TerminalProduction prod in Productions)
+            {
+                if (prod.Terminal == '#')
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
