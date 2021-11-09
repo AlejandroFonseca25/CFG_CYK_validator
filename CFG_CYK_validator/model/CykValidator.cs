@@ -13,11 +13,19 @@ namespace CFG_CYK_validator.model
         private int length;
         private List<Variable>[,] cykGrid;
 
-        public CykValidator(Grammar grammar, string chain)
+        public CykValidator()
         {
-            this.grammar = grammar;
-            this.chain = chain;
-            length = chain.Length;
+            grammar = null;
+            chain = null;
+            length = 0;
+        }
+
+        public void init(List<Tuple<string, List<string>>> variables)
+        {
+            foreach (Tuple<string, List<string>> v in variables)
+            {
+                
+            }
         }
 
         public bool CykAlgorithm()

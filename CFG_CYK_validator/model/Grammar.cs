@@ -9,28 +9,10 @@ namespace CFG_CYK_validator.model
     class Grammar
     {
         private List<Variable> variables { get; }
-        private List<char> terminals { get; }
 
-        public Grammar(List<Variable>  variables, List<terminals> )
+        public Grammar(List<Variable>  variables)
         {
             this.variables = variables;
-            terminals = FindTerminals();
-        }
-
-        public bool QuickGenerationCheck(string chain)
-        {
-
-            return false;
-        }
-
-        private List<char> FindTerminals()
-        {
-            List<char> tempTerminals = new List<char>();
-
-            foreach (Variable v in variables)
-            {
-                if ()
-            }
         }
     }
 }
