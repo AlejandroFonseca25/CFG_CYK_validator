@@ -8,3 +8,10 @@ C:\Users\prestamo\Documents\GitHub\CFG_CYK_validator\CFG_CYK_validator\bin\Debug
 C:\Users\prestamo\Documents\GitHub\CFG_CYK_validator\CFG_CYK_validator\bin\Debug\CFG_CYK_validator.pdb
 C:\Users\prestamo\Documents\GitHub\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.exe
 C:\Users\prestamo\Documents\GitHub\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.pdb
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.csproj.AssemblyReference.cache
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.Properties.Resources.resources
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.ui.Form1.resources
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.csproj.GenerateResource.cache
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.exe
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.pdb

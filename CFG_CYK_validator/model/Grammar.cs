@@ -32,5 +32,23 @@ namespace CFG_CYK_validator.model
             }
             return generators;
         }
+
+        public List<Variable> GeneratorsOfBinary(string prod)
+        {
+            List<Variable> generators = new List<Variable>();
+
+            foreach (Variable v in Variables)
+            {
+                foreach (BinaryProduction p in v.Productions)
+                {
+                    if (p.Contains(prod))
+                    {
+                        generators.Add(v);
+                        break;
+                    }
+                }
+            }
+            return generators;
+        }
     }
 }
