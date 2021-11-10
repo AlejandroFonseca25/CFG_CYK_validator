@@ -9,6 +9,7 @@ namespace CFG_CYK_validator.model
     class CykValidator
     {
         private Grammar grammar;
+        private Variable startVariable;
         private List<Variable>[,] cykGrid;
 
         public CykValidator()
@@ -37,6 +38,8 @@ namespace CFG_CYK_validator.model
                     finalVariables.Add(new Variable(v.Item1, prodsToAdd));
                     
                     grammar = new Grammar(finalVariables);
+
+                    startVariable = grammar.Variables[0];
                 }
             }
         }
@@ -95,11 +98,18 @@ namespace CFG_CYK_validator.model
                     {
                         couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i,k],cykGrid[i+k,j-k]));
                     }
-                    generators = GeneratorsOfChain(couples);
+                    cykGrid[i,j] = GeneratorsOfChain(couples);
                 }
             }
 
-            return false;
+            if (cykGrid[1,chain.Length].Contains(startVariable))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private List<Variable> GeneratorsOfChain(List<Tuple<List<Variable>, List<Variable>>> couples)
@@ -134,7 +144,7 @@ namespace CFG_CYK_validator.model
 
         private bool ValidateEmpty()
         {
-            if (grammar.Variables[0].HasEmpty())
+            if (startVariable.HasEmpty())
             {
                 return true;
             }
