@@ -59,13 +59,13 @@ namespace CFG_CYK_validator.ui
             {
                 List<Tuple<string, List<string>>> cfg = new List<Tuple<string, List<string>>>();
                 List<string> vars = new List<string>();
-
+                int cont = 0;
                 foreach (DataGridViewRow row in Table.Rows)
                 {
                     List<string> productions = new List<String>();
                     string var = Convert.ToString(row.Cells["VariableColumn"].Value);
                     string[] prods = Convert.ToString(row.Cells["ProductionColumn"].Value).Split(',');
-                    if (VariableIsValid(var, vars) && ProductionIsValid(prods))
+                    if (VariableIsValid(var, vars) && ProductionIsValid(prods,cont))
                     {
                         productions.AddRange(prods);
                         cfg.Add(new Tuple<string, List<string>>(var, productions));
@@ -76,6 +76,7 @@ namespace CFG_CYK_validator.ui
                         MessageBox.Show("Remember that the CFG must be in Chomsky Normal Form", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    cont++;
                 }
 
                 cyk.init(cfg);
@@ -118,7 +119,7 @@ namespace CFG_CYK_validator.ui
             }
             return ans;
         }
-        private bool ProductionIsValid(string[] prods)
+        private bool ProductionIsValid(string[] prods,int cont)
         {
             bool ans = true;
             foreach(string prod in prods)
@@ -133,15 +134,19 @@ namespace CFG_CYK_validator.ui
                     if (!Char.IsUpper(prod[0]) || !Char.IsUpper(prod[1]))
                     {
                         ans = false;
-                        Console.WriteLine(prod + " 2");
+                        
                     }
                 }
                 else if (prod.Length == 1)
                 {
-                    if (Char.IsUpper(prod[0]))
+                    if(prod[0].Equals('#') && cont >= 1)
                     {
                         ans = false;
-                        Console.WriteLine(prod + " 3");
+                        Console.WriteLine("Vacio en variable dif a la primera");
+                    }
+                    else if (Char.IsUpper(prod[0]) || (!Char.IsLetter(prod[0]) && !prod[0].Equals('#')))
+                    {
+                        ans = false;                     
                     }
                 }
             }          
