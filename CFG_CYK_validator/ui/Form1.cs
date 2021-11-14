@@ -42,7 +42,7 @@ namespace CFG_CYK_validator.ui
             }
             catch(FormatException)
             {
-                MessageBox.Show("Wrong input. Please enter a number and try again", "Oops!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Wrong input. Please enter a number and try again.", "Oops!",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }                     
         }
 
@@ -51,7 +51,7 @@ namespace CFG_CYK_validator.ui
 
             if (Table.Rows.Count == 0)
             {
-                MessageBox.Show("The table is empty. Please generate a CFG and try again", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The table is empty. Please generate a CFG and try again.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -73,13 +73,13 @@ namespace CFG_CYK_validator.ui
                     }
                     else
                     {
-                        MessageBox.Show("Remember that the CFG must be in Chomsky Normal Form", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Remember that the CFG must be in Chomsky Normal Form.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     cont++;
                 }
 
-                cyk.init(cfg);
+                cyk.Init(cfg);
                 bool valid = cyk.ValidateChain(ChainTextBox.Text);
 
                 if (valid)
@@ -93,7 +93,7 @@ namespace CFG_CYK_validator.ui
             }
             catch (FormatException)
             {
-                MessageBox.Show("Wrong input. Please check the values on the table and try again", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wrong input. Please check the values on the table and try again.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
@@ -105,17 +105,14 @@ namespace CFG_CYK_validator.ui
             if (var.Length > 1)
             {
                 ans= false;
-                Console.WriteLine(var + " 4");
             }
             else if (!Char.IsUpper(var[0]))
             {
                 ans= false;
-                Console.WriteLine(var + " 5");
             }
             else if (vars.Contains(var))
             {
                 ans= false;
-                Console.WriteLine(var + " 6");
             }
             return ans;
         }
@@ -127,7 +124,6 @@ namespace CFG_CYK_validator.ui
                 if (prod.Length > 2)
                 {
                     ans = false;
-                    Console.WriteLine(prod + " 1");
                 }
                 else if (prod.Length == 2)
                 {
@@ -142,7 +138,6 @@ namespace CFG_CYK_validator.ui
                     if(prod[0].Equals('#') && cont >= 1)
                     {
                         ans = false;
-                        Console.WriteLine("Vacio en variable dif a la primera");
                     }
                     else if (Char.IsUpper(prod[0]) || (!Char.IsLetter(prod[0]) && !prod[0].Equals('#')))
                     {

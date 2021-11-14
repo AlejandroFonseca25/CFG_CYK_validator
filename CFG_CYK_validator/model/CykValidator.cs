@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CFG_CYK_validator.model
 {
@@ -17,16 +14,17 @@ namespace CFG_CYK_validator.model
 
         }
 
-        public void init(List<Tuple<string, List<string>>> rawVariables)
+        public void Init(List<Tuple<string, List<string>>> rawVariables)
         {
             List<Variable> finalVariables = new List<Variable>();
 
+
             foreach (Tuple<string, List<string>> v in rawVariables)
             {
-                foreach(string p in v.Item2)
+                List<Production> prodsToAdd = new List<Production>();
+               
+                foreach (string p in v.Item2)
                 {
-                    List<Production> prodsToAdd = new List<Production>();
-
                     if (p.Length == 2)
                     {
                         prodsToAdd.Add(new BinaryProduction(p[0], p[1]));
@@ -34,14 +32,16 @@ namespace CFG_CYK_validator.model
                     {
                         prodsToAdd.Add(new TerminalProduction(p[0]));
                     }
-
-                    finalVariables.Add(new Variable(v.Item1, prodsToAdd));
-                    
-                    grammar = new Grammar(finalVariables);
-
-                    startVariable = grammar.Variables[0];
                 }
+              
+                finalVariables.Add(new Variable(v.Item1, prodsToAdd));
             }
+
+            
+
+            grammar = new Grammar(finalVariables);
+
+            startVariable = grammar.Variables[0];
         }
 
         public bool ValidateChain(string chain)
@@ -62,7 +62,7 @@ namespace CFG_CYK_validator.model
             
             bool generated = InitialStepCyk(chain);
 
-            if (generated && chain.Length > 1)
+            if (generated)
             {
                 generated = RepetitiveStepCyk(chain);
             }
@@ -85,20 +85,15 @@ namespace CFG_CYK_validator.model
 
         private bool RepetitiveStepCyk(string chain)
         {
-            Console.WriteLine("chain: " + chain);
             for (int j = 2; j <= chain.Length; j++)
             {
-                Console.WriteLine("j= " + j);
-                List<Tuple<List<Variable>, List<Variable>>> couples =
-                            new List<Tuple<List<Variable>, List<Variable>>>();
-
                 for (int i = 1; i <= chain.Length - j + 1; i++)
                 {
-                    Console.WriteLine("i= " + i);
+                    List<Tuple<List<Variable>, List<Variable>>> couples =
+                           new List<Tuple<List<Variable>, List<Variable>>>();
+
                     for (int k = 1; k <= j - 1; k++)
                     {
-                        Console.WriteLine("k= " + k);
-                        Console.WriteLine("i: " + (i-1) + " j:" + (j-1) + " k:" + (k-1));
                         couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i-1,k-1],cykGrid[i+k-1,j-k-1]));
                     }
                     cykGrid[i-1,j-1] = GeneratorsOfChain(couples);
