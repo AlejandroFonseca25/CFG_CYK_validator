@@ -15,3 +15,6 @@ C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CY
 C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.csproj.CoreCompileInputs.cache
 C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.exe
 C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\obj\Debug\CFG_CYK_validator.pdb
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\bin\Debug\CFG_CYK_validator.exe.config
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\bin\Debug\CFG_CYK_validator.exe
+C:\Users\User\Documents\GIT\CFG_CYK_validator\CFG_CYK_validator\bin\Debug\CFG_CYK_validator.pdb

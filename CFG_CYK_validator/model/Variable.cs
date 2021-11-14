@@ -19,11 +19,15 @@ namespace CFG_CYK_validator.model
 
         public bool HasEmpty()
         {
-            foreach (TerminalProduction prod in Productions)
+            foreach (Production p in Productions)
             {
-                if (prod.Terminal == '#')
+                if (p is TerminalProduction)
                 {
-                    return true;
+                    TerminalProduction terminal = (TerminalProduction)p;
+                    if (terminal.Terminal == '#')
+                    {
+                        return true;
+                    }
                 }
             }
 

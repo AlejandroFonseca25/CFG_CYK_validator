@@ -10,7 +10,7 @@ namespace CFG_CYK_validator.model
     {
         public List<Variable> Variables { get; }
 
-        public Grammar(List<Variable>  variables)
+        public Grammar(List<Variable> variables)
         {
             this.Variables = variables;
         }
@@ -21,12 +21,16 @@ namespace CFG_CYK_validator.model
 
             foreach (Variable v in Variables)
             {
-                foreach (TerminalProduction p in v.Productions)
+                foreach (Production p in v.Productions)
                 {
-                    if (p.Contains(ch))
+                    if (p is TerminalProduction) 
                     {
-                        generators.Add(v);
-                        break;
+                        TerminalProduction terminal = (TerminalProduction) p;
+                        if (terminal.Contains(ch))
+                        {
+                            generators.Add(v);
+                            break;
+                        }
                     }
                 }
             }
@@ -39,12 +43,17 @@ namespace CFG_CYK_validator.model
 
             foreach (Variable v in Variables)
             {
-                foreach (BinaryProduction p in v.Productions)
+                foreach (Production p in v.Productions)
                 {
-                    if (p.Contains(prod))
+                    if (p is BinaryProduction)
                     {
-                        generators.Add(v);
-                        break;
+                        BinaryProduction binary = (BinaryProduction) p;
+
+                        if (binary.Contains(prod))
+                        {
+                            generators.Add(v);
+                            break;
+                        }
                     }
                 }
             }

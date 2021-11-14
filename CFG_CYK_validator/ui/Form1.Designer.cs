@@ -33,12 +33,13 @@ namespace CFG_CYK_validator.ui
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.Table = new System.Windows.Forms.DataGridView();
+            this.VariableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.VariableTextBox = new System.Windows.Forms.TextBox();
             this.GenerateTableButton = new System.Windows.Forms.Button();
             this.ValidateButton = new System.Windows.Forms.Button();
-            this.VariableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChainTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +89,18 @@ namespace CFG_CYK_validator.ui
             this.Table.Size = new System.Drawing.Size(344, 174);
             this.Table.TabIndex = 1;
             // 
+            // VariableColumn
+            // 
+            this.VariableColumn.HeaderText = "Variable";
+            this.VariableColumn.Name = "VariableColumn";
+            this.VariableColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ProductionColumn
+            // 
+            this.ProductionColumn.HeaderText = "Production";
+            this.ProductionColumn.Name = "ProductionColumn";
+            this.ProductionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -128,23 +141,19 @@ namespace CFG_CYK_validator.ui
             this.ValidateButton.UseVisualStyleBackColor = true;
             this.ValidateButton.Click += new System.EventHandler(this.ValidateButton_Click);
             // 
-            // VariableColumn
+            // ChainTextBox
             // 
-            this.VariableColumn.HeaderText = "Variable";
-            this.VariableColumn.Name = "VariableColumn";
-            this.VariableColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ProductionColumn
-            // 
-            this.ProductionColumn.HeaderText = "Production";
-            this.ProductionColumn.Name = "ProductionColumn";
-            this.ProductionColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ChainTextBox.Location = new System.Drawing.Point(214, 272);
+            this.ChainTextBox.Name = "ChainTextBox";
+            this.ChainTextBox.Size = new System.Drawing.Size(100, 20);
+            this.ChainTextBox.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 315);
+            this.Controls.Add(this.ChainTextBox);
             this.Controls.Add(this.ValidateButton);
             this.Controls.Add(this.GenerateTableButton);
             this.Controls.Add(this.VariableTextBox);
@@ -169,6 +178,7 @@ namespace CFG_CYK_validator.ui
         private System.Windows.Forms.Button ValidateButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductionColumn;
+        private System.Windows.Forms.TextBox ChainTextBox;
     }
 }
 

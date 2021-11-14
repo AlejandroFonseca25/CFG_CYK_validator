@@ -74,7 +74,7 @@ namespace CFG_CYK_validator.model
         {
             for (int i = 0; i < chain.Length; i++)
             {
-                cykGrid[i, 0] = grammar.GeneratorsOfChar(chain[i]);
+                cykGrid[i,0] = grammar.GeneratorsOfChar(chain[i]);
                 if (cykGrid[i,0].Count == 0)
                 {
                     return false;
@@ -85,24 +85,27 @@ namespace CFG_CYK_validator.model
 
         private bool RepetitiveStepCyk(string chain)
         {
-            List<Variable> generators = new List<Variable>();
-
-            for (int j = 1; j < chain.Length; j++)
+            Console.WriteLine("chain: " + chain);
+            for (int j = 2; j <= chain.Length; j++)
             {
+                Console.WriteLine("j= " + j);
                 List<Tuple<List<Variable>, List<Variable>>> couples =
                             new List<Tuple<List<Variable>, List<Variable>>>();
 
-                for (int i = 0; i < chain.Length - j; i++)
+                for (int i = 1; i <= chain.Length - j + 1; i++)
                 {
-                    for (int k = 0; k <= j - 1; k++)
+                    Console.WriteLine("i= " + i);
+                    for (int k = 1; k <= j - 1; k++)
                     {
-                        couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i,k],cykGrid[i+k,j-k]));
+                        Console.WriteLine("k= " + k);
+                        Console.WriteLine("i: " + (i-1) + " j:" + (j-1) + " k:" + (k-1));
+                        couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i-1,k-1],cykGrid[i+k-1,j-k-1]));
                     }
-                    cykGrid[i,j] = GeneratorsOfChain(couples);
+                    cykGrid[i-1,j-1] = GeneratorsOfChain(couples);
                 }
             }
 
-            if (cykGrid[1,chain.Length].Contains(startVariable))
+            if (cykGrid[0,chain.Length-1].Contains(startVariable))
             {
                 return true;
             }

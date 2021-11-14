@@ -21,7 +21,7 @@ namespace CFG_CYK_validator.model
 
         public bool Contains(string variables)
         {
-            if (variables.Equals(FirstVariable + SecondVariable))
+            if (variables.Equals(FirstVariable.ToString() + SecondVariable.ToString()))
             {
                 return true;
             }

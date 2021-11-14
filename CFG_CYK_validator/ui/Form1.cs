@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CFG_CYK_validator.model;
 
 namespace CFG_CYK_validator.ui
 {
     public partial class Form1 : Form
     {
+        private CykValidator cyk;
         public Form1()
         {
             InitializeComponent();
+            cyk = new CykValidator();
         }
 
         private void GenerateTableButton_Click(object sender, EventArgs e)
@@ -54,7 +57,7 @@ namespace CFG_CYK_validator.ui
 
             try
             {
-                List<Tuple<string, List<string>>> Cfg = new List<Tuple<string, List<string>>>();
+                List<Tuple<string, List<string>>> cfg = new List<Tuple<string, List<string>>>();
                 List<string> vars = new List<string>();
 
                 foreach (DataGridViewRow row in Table.Rows)
@@ -65,7 +68,7 @@ namespace CFG_CYK_validator.ui
                     if (VariableIsValid(var, vars) && ProductionIsValid(prods))
                     {
                         productions.AddRange(prods);
-                        Cfg.Add(new Tuple<string, List<string>>(var, productions));
+                        cfg.Add(new Tuple<string, List<string>>(var, productions));
                         vars.Add(var);
                     }
                     else
@@ -73,6 +76,18 @@ namespace CFG_CYK_validator.ui
                         MessageBox.Show("Remember that the CFG must be in Chomsky Normal Form", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                }
+
+                cyk.init(cfg);
+                bool valid = cyk.ValidateChain(ChainTextBox.Text);
+
+                if (valid)
+                {
+                    MessageBox.Show("The chain is generated.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                } else if (!valid)
+                {
+                    MessageBox.Show("The chain is not generated.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (FormatException)
