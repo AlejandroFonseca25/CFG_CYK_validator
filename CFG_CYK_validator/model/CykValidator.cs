@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CFG_CYK_validator.model
 {
-    class CykValidator
+    internal class CykValidator
     {
         private Grammar grammar;
         private Variable startVariable;
@@ -11,33 +11,30 @@ namespace CFG_CYK_validator.model
 
         public CykValidator()
         {
-
         }
 
         public void Init(List<Tuple<string, List<string>>> rawVariables)
         {
             List<Variable> finalVariables = new List<Variable>();
 
-
             foreach (Tuple<string, List<string>> v in rawVariables)
             {
                 List<Production> prodsToAdd = new List<Production>();
-               
+
                 foreach (string p in v.Item2)
                 {
                     if (p.Length == 2)
                     {
                         prodsToAdd.Add(new BinaryProduction(p[0], p[1]));
-                    } else 
+                    }
+                    else
                     {
                         prodsToAdd.Add(new TerminalProduction(p[0]));
                     }
                 }
-              
+
                 finalVariables.Add(new Variable(v.Item1, prodsToAdd));
             }
-
-            
 
             grammar = new Grammar(finalVariables);
 
@@ -52,14 +49,14 @@ namespace CFG_CYK_validator.model
             }
             else
             {
-                return CykAlgorithm(chain); 
+                return CykAlgorithm(chain);
             }
         }
 
         private bool CykAlgorithm(string chain)
         {
             cykGrid = new List<Variable>[chain.Length, chain.Length];
-            
+
             bool generated = InitialStepCyk(chain);
 
             if (generated)
@@ -74,8 +71,8 @@ namespace CFG_CYK_validator.model
         {
             for (int i = 0; i < chain.Length; i++)
             {
-                cykGrid[i,0] = grammar.GeneratorsOfChar(chain[i]);
-                if (cykGrid[i,0].Count == 0)
+                cykGrid[i, 0] = grammar.GeneratorsOfChar(chain[i]);
+                if (cykGrid[i, 0].Count == 0)
                 {
                     return false;
                 }
@@ -94,13 +91,14 @@ namespace CFG_CYK_validator.model
 
                     for (int k = 1; k <= j - 1; k++)
                     {
-                        couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i-1,k-1],cykGrid[i+k-1,j-k-1]));
+                        couples.Add(new Tuple<List<Variable>, List<Variable>>(cykGrid[i - 1, k - 1], 
+                            cykGrid[i + k - 1, j - k - 1]));
                     }
-                    cykGrid[i-1,j-1] = GeneratorsOfChain(couples);
+                    cykGrid[i - 1, j - 1] = GeneratorsOfChain(couples);
                 }
             }
 
-            if (cykGrid[0,chain.Length-1].Contains(startVariable))
+            if (cykGrid[0, chain.Length - 1].Contains(startVariable))
             {
                 return true;
             }
@@ -113,7 +111,7 @@ namespace CFG_CYK_validator.model
         private List<Variable> GeneratorsOfChain(List<Tuple<List<Variable>, List<Variable>>> couples)
         {
             List<Variable> generators = new List<Variable>();
-            
+
             foreach (Tuple<List<Variable>, List<Variable>> couple in couples)
             {
                 List<Variable> first = couple.Item1;
@@ -151,9 +149,5 @@ namespace CFG_CYK_validator.model
                 return false;
             }
         }
-
-        
-
-        
     }
 }

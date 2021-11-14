@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CFG_CYK_validator.model
 {
-    class Grammar
+    internal class Grammar
     {
         public List<Variable> Variables { get; }
 
@@ -23,9 +19,8 @@ namespace CFG_CYK_validator.model
             {
                 foreach (Production p in v.Productions)
                 {
-                    if (p is TerminalProduction) 
+                    if (p is TerminalProduction terminal)
                     {
-                        TerminalProduction terminal = (TerminalProduction) p;
                         if (terminal.Contains(ch))
                         {
                             generators.Add(v);
@@ -45,10 +40,8 @@ namespace CFG_CYK_validator.model
             {
                 foreach (Production p in v.Productions)
                 {
-                    if (p is BinaryProduction)
+                    if (p is BinaryProduction binary)
                     {
-                        BinaryProduction binary = (BinaryProduction) p;
-
                         if (binary.Contains(prod))
                         {
                             generators.Add(v);

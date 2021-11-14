@@ -1,19 +1,14 @@
-﻿using System;
+﻿using CFG_CYK_validator.model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CFG_CYK_validator.model;
 
 namespace CFG_CYK_validator.ui
 {
     public partial class Form1 : Form
     {
         private CykValidator cyk;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +17,6 @@ namespace CFG_CYK_validator.ui
 
         private void GenerateTableButton_Click(object sender, EventArgs e)
         {
-       
             try
             {
                 int rows = Convert.ToInt32(VariableTextBox.Text);
@@ -37,18 +31,17 @@ namespace CFG_CYK_validator.ui
                     else
                     {
                         Table.Rows.Add("", "");
-                    }                
+                    }
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
-                MessageBox.Show("Wrong input. Please enter a number and try again.", "Oops!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }                     
+                MessageBox.Show("Wrong input. Please enter a number and try again.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ValidateButton_Click(object sender, EventArgs e)
         {
-
             if (Table.Rows.Count == 0)
             {
                 MessageBox.Show("The table is empty. Please generate a CFG and try again.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -65,7 +58,7 @@ namespace CFG_CYK_validator.ui
                     List<string> productions = new List<String>();
                     string var = Convert.ToString(row.Cells["VariableColumn"].Value);
                     string[] prods = Convert.ToString(row.Cells["ProductionColumn"].Value).Split(',');
-                    if (VariableIsValid(var, vars) && ProductionIsValid(prods,cont))
+                    if (VariableIsValid(var, vars) && ProductionIsValid(prods, cont))
                     {
                         productions.AddRange(prods);
                         cfg.Add(new Tuple<string, List<string>>(var, productions));
@@ -86,7 +79,8 @@ namespace CFG_CYK_validator.ui
                 {
                     MessageBox.Show("The chain is generated.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
-                } else if (!valid)
+                }
+                else if (!valid)
                 {
                     MessageBox.Show("The chain is not generated.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -94,32 +88,31 @@ namespace CFG_CYK_validator.ui
             catch (FormatException)
             {
                 MessageBox.Show("Wrong input. Please check the values on the table and try again.", "Oops!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
-
         }
 
-        private bool VariableIsValid(string var,List<string> vars)
+        private bool VariableIsValid(string var, List<string> vars)
         {
             bool ans = true;
             if (var.Length > 1)
             {
-                ans= false;
+                ans = false;
             }
             else if (!Char.IsUpper(var[0]))
             {
-                ans= false;
+                ans = false;
             }
             else if (vars.Contains(var))
             {
-                ans= false;
+                ans = false;
             }
             return ans;
         }
-        private bool ProductionIsValid(string[] prods,int cont)
+
+        private bool ProductionIsValid(string[] prods, int cont)
         {
             bool ans = true;
-            foreach(string prod in prods)
+            foreach (string prod in prods)
             {
                 if (prod.Length > 2)
                 {
@@ -130,23 +123,21 @@ namespace CFG_CYK_validator.ui
                     if (!Char.IsUpper(prod[0]) || !Char.IsUpper(prod[1]))
                     {
                         ans = false;
-                        
                     }
                 }
                 else if (prod.Length == 1)
                 {
-                    if(prod[0].Equals('#') && cont >= 1)
+                    if (prod[0].Equals('#') && cont >= 1)
                     {
                         ans = false;
                     }
                     else if (Char.IsUpper(prod[0]) || (!Char.IsLetter(prod[0]) && !prod[0].Equals('#')))
                     {
-                        ans = false;                     
+                        ans = false;
                     }
                 }
-            }          
+            }
             return ans;
         }
-
     }
 }

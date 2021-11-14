@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-
 namespace CFG_CYK_validator.model
 {
-    class Variable
+    internal class Variable
     {
         public string Name { get; }
         public List<Production> Productions { get; }
@@ -18,9 +17,8 @@ namespace CFG_CYK_validator.model
         {
             foreach (Production p in Productions)
             {
-                if (p is TerminalProduction)
+                if (p is TerminalProduction terminal)
                 {
-                    TerminalProduction terminal = (TerminalProduction)p;
                     if (terminal.Terminal == '#')
                     {
                         return true;
