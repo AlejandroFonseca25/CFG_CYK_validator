@@ -161,7 +161,7 @@ namespace CFG_CYK_validator.ui
             this.Controls.Add(this.Table);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "String Validation";
             ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
